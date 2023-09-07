@@ -44,7 +44,7 @@ const Controller = () => {
       <button className={`${styles.button} ${styles.flagButton}`} onClick={flag}>
         🚩
       </button>
-      <button className={`${styles.button} ${styles.digButton}`} onClick={dig}>
+      <button className={`${styles.button} ${styles.openButton}`} onClick={dig}>
         ⛏️
       </button>
     </div>
