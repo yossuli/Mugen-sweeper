@@ -70,10 +70,53 @@
 }
 
 .yusha {
+  position: absolute;
   display: grid;
-  grid-template: repeat(8, 1fr) / repeat(8, 1fr);
+  grid-template: repeat(128, 1fr) / repeat(32, 1fr);
   width: 20svmin;
-  aspect-ratio: 1;
+  aspect-ratio: 1/4;
+  overflow: hidden;
+  transition: 0ms;
+  animation: walk;
+  animation-iteration-count: infinite;
+}
+
+@keyframes walk {
+  0% {
+    transform: translateY(0);
+  }
+
+  24.9% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-20svmin);
+  }
+
+  49.9% {
+    transform: translateY(-20svmin);
+  }
+
+  50% {
+    transform: translateY(-40svmin);
+  }
+
+  74.9% {
+    transform: translateY(-40svmin);
+  }
+
+  75% {
+    transform: translateY(-60svmin);
+  }
+
+  99.9% {
+    transform: translateY(-60svmin);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .pixel {

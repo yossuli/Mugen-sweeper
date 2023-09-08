@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useController } from 'src/Hooks/useController';
-import GameDisplay from 'src/components/GameDisplay/GameDisplay';
+import Board from 'src/components/Board/Board';
 import { GameOver } from 'src/components/GameOver/GameOver';
 import { Loading } from 'src/components/Loading/Loading';
 import LoginModal from 'src/components/LoginModal/LoginModal';
@@ -34,7 +34,7 @@ const Controller = () => {
           </button>
         ))}
       </div>
-      <GameDisplay
+      <Board
         transform={transform}
         dir={dir}
         board={board}
