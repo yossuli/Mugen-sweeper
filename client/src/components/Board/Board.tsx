@@ -11,9 +11,9 @@ import {
   IS_BLANK_CELL,
   TYPE_IS,
 } from 'src/utils/flag';
-import { yushaColorList, yushaImages } from 'src/utils/yushaImage';
+import { colors, players } from 'src/utils/player';
 import { Loading } from '../Loading/Loading';
-import styles from './GameDisplay.module.css';
+import styles from './Board.module.css';
 
 const CLASS_NAMES = {
   block: styles.block,
@@ -24,7 +24,7 @@ const CLASS_NAMES = {
   number: styles.number,
 };
 
-const GameDisplay = ({
+const Board = ({
   transform,
   dir,
   board,
@@ -113,9 +113,7 @@ const GameDisplay = ({
           transform: `translateY(${boardTransform.y * computed20Svmin}px) translateX(${
             boardTransform.x * computed20Svmin
           }px)`,
-          transition: [boardTransform.x === 0, boardTransform.y === 0].every(Boolean)
-            ? '0.1s'
-            : '0s',
+          transition: [boardTransform.x === 0, boardTransform.y === 0].every(Boolean) ? '0.1s' : '0s',
           top,
           left,
         }}
@@ -139,7 +137,7 @@ const GameDisplay = ({
       <div
         className={styles.display}
         style={{
-          gridTemplate: `repeat(${cattedBoard.length}, 1fr) / repeat(${cattedBoard[0].length}, 1fr)`,
+          gridTemplate: `repeat(${cattedBoard.length}, 20svmin) / repeat(${cattedBoard[0].length}, 1fr)`,
           backgroundColor: '#0000',
 
           transform: `translateY(${displayTransform.y * computed20Svmin}px) translateX(${
@@ -154,14 +152,30 @@ const GameDisplay = ({
       >
         {playerDisplay.map((row, y) =>
           row.map((val, x) => (
-            <div key={`${y}-${x}`} style={{ backgroundColor: '#0000', border: 'none' }}>
+            <div
+              key={`${y}-${x}`}
+              style={{
+                backgroundColor: '#0000',
+                border: 'none',
+                width: '20svmin',
+                overflow: 'hidden',
+                height: '20svmin',
+              }}
+            >
               {Boolean(TYPE_IS('user', val)) && (
-                <div className={styles.yusha} style={{ backgroundColor: '#0000', border: 'none' }}>
-                  {yushaImages[dir].split('').map((color, y) => (
+                <div
+                  className={styles.yusha}
+                  style={{
+                    backgroundColor: '#0000',
+                    border: 'none',
+                    animationDuration: [transform.x, transform.y].some(Boolean) ? '0.25s' : '',
+                  }}
+                >
+                  {players.map((color, y) => (
                     <div
                       key={y}
                       className={styles.pixel}
-                      style={{ backgroundColor: yushaColorList[Number(color)], border: 'none' }}
+                      style={{ backgroundColor: colors[color], border: 'none' }}
                     />
                   ))}
                 </div>
@@ -180,4 +194,4 @@ const GameDisplay = ({
   );
 };
 
-export default GameDisplay;
+export default Board;

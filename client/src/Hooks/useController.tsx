@@ -26,7 +26,7 @@ export const useController = (playerIdStr: string | null) => {
     if ([transform.x, transform.y].some(Boolean)) {
       setTimeout(() => {
         setTransform({ x: 0, y: 0 });
-      }, 0);
+      }, 100);
     }
   }, [transform.x, transform.y]);
 
